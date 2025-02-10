@@ -1,35 +1,81 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import axios from "axios";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [location, setLocation] = useState("");
+  const [weatherData, setWeatherData] = useState<any>(null); 
+
+  const searchLocation = async (event: any) => {
+    // Added event parameter
+    if (event.key === "Enter") {
+      try {
+        const response = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=ab38d7731466c31227cd4701f7d9aa27`
+        );
+        setWeatherData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+      }
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <div className="search">
+        <input
+          type="text"
+          placeholder="Search Location"
+          value={location}
+          onChange={(event) => setLocation(event.target.value)}
+          onKeyDown={searchLocation}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <h1>Weather App</h1>
+      <div className="top">
+        <div className="location">
+          {weatherData ? weatherData.name : "Location"}
+        </div>{" "}
+        {/* Display location */}
+        <div className="temp">
+          {weatherData ? weatherData.main.temp : "Temperature"}
+        </div>{" "}
+        {/* Display temperature */}
+        <div className="clouds">
+          {weatherData
+            ? weatherData.weather[0].description
+            : "Cloud Description"}
+        </div>{" "}
+        {/* Display cloud description */}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <div className="bottom">
+        <div className="feels">
+          <div>Feels Like</div>
+          <span>
+            {weatherData ? weatherData.main.feels_like : "Feels Like"}
+          </span>{" "}
+          {/* Display feels like temperature */}
+        </div>
+        <div className="humidity">
+          <div>Humidity</div>
+          <span>
+            {weatherData ? weatherData.main.humidity : "Humidity"}
+          </span>{" "}
+          {/* Display humidity */}
+        </div>
+        <div className="winds">
+          <div>Winds</div>
+          <div className="description">
+            <div>{weatherData ? weatherData.wind.speed : "Wind Speed"}</div>{" "}
+            <div>
+              {weatherData ? weatherData.wind.deg : "Wind direction"} deg
+            </div>{" "}
+          </div>
+          {/* Display wind speed */}
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
