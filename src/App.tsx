@@ -36,6 +36,9 @@ function App() {
         <div className="location">
           {weatherData ? weatherData.name : "Location"}
         </div>{" "}
+        <div className="location">
+          {weatherData ? weatherData.sys.country : "Country"}
+        </div>{" "}
         {/* Display location */}
         <div className="temp">
           {weatherData ? weatherData.main.temp : "Temperature"}
@@ -59,14 +62,14 @@ function App() {
         <div className="humidity">
           <div>Humidity</div>
           <span>
-            {weatherData ? weatherData.main.humidity : "Humidity"}
+            {weatherData ? weatherData.main.humidity : "Humidity"}%
           </span>{" "}
           {/* Display humidity */}
         </div>
         <div className="winds">
           <div>Winds</div>
           <div className="description">
-            <div>{weatherData ? weatherData.wind.speed : "Wind Speed"}</div>{" "}
+            <div>{weatherData ? weatherData.wind.speed : "Wind Speed"} km/h</div>{" "}
             <div>
               {weatherData ? weatherData.wind.deg : "Wind direction"} deg
             </div>{" "}
