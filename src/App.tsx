@@ -55,6 +55,7 @@ function App() {
           `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=ab38d7731466c31227cd4701f7d9aa27`
         );
         setWeatherData(currentWeatherResponse.data);
+        console.log(currentWeatherResponse.data)
 
         // 5-day forecast
         const forecastResponse = await axios.get<ForecastData>(
@@ -68,14 +69,13 @@ function App() {
     }
   };
 
-  // Function to process forecast data to get daily forecasts
   const getDailyForecasts = (): DailyForecast[] => {
     if (!forecastData || !forecastData.list) return [];
 
     const dailyForecasts: { [date: string]: DailyForecast } = {};
 
     forecastData.list.forEach((forecast: ForecastItem) => {
-      const date = forecast.dt_txt.split(" ")[0]; // Extract date
+      const date = forecast.dt_txt.split(" ")[0];
       if (!dailyForecasts[date]) {
         dailyForecasts[date] = {
           date: date,
