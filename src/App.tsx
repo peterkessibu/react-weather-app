@@ -152,7 +152,7 @@ function App() {
           <div key={day.date} className="forecast-item">
             <h3>{day.date}</h3>
             <div>
-              Temperature: {Math.min(...day.temps)} - {Math.max(...day.temps)}
+              Temperature: Min: {Math.min(...day.temps)} - Max: {Math.max(...day.temps)}
             </div>
             <div>Description: {day.descriptions[0]}</div>
           </div>
