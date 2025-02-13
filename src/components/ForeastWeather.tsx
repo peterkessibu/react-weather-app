@@ -44,8 +44,16 @@ export const Forecast = ({ forecastData }: ForecastProps) => {
                   <Typography variant="h6">
                     {new Date(day.date).toLocaleDateString('en-US', { weekday: 'short' })}
                   </Typography>
+                  <Typography variant="h6">
+                    {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </Typography>
                   <Typography variant="body1">
-                    {Math.round(Math.min(...day.temps))}°C - {Math.round(Math.max(...day.temps))}°C
+                    <Typography variant="body1">
+                      Min Temperature: {Math.round(Math.min(...day.temps))}°C
+                    </Typography>
+                    <Typography variant="body1">
+                      Max Temperature: {Math.round(Math.max(...day.temps))}°C   
+                     </Typography>
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     {day.descriptions[0]}

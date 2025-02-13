@@ -12,7 +12,7 @@ interface CurrentWeatherProps {
 
 export const CurrentWeather = ({ weatherData }: CurrentWeatherProps) => {
   return (
-    <Card sx={{ mb: 4 }}>
+    <Card sx={{ mb: 4, border: 2, backgroundColor: "rgba(255, 255, 255, 0.1)" }}>
       <CardContent>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
