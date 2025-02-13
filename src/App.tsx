@@ -43,7 +43,7 @@ const App = () => {
       <CssBaseline />
       <Container maxWidth="lg">
         <Box sx={{ my: 4, textAlign: "center" }}>
-          <Typography variant="h3" component="h1" gutterBottom>
+          <Typography data-testid="Weather-app" variant="h3" component="h1" gutterBottom>
             Weather App
           </Typography>
           <TextField
