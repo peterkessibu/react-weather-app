@@ -1,44 +1,44 @@
 {
-    "coord": {
-        "lon": -0.1969,
-        "lat": 5.556
-    },
-    "weather": [
-        {
-            "id": 804,
-            "main": "Clouds",
-            "description": "overcast clouds",
-            "icon": "04d"
-        }
-    ],
-    "base": "stations",
-    "main": {
-        "temp": 302.88,
-        "feels_like": 307.77,
-        "temp_min": 302.88,
-        "temp_max": 302.88,
-        "pressure": 1006,
-        "humidity": 71,
-        "sea_level": 1006,
-        "grnd_level": 1002
-    },
-    "visibility": 10000,
-    "wind": {
-        "speed": 6.11,
-        "deg": 197,
-        "gust": 6.11
-    },
-    "clouds": {
-        "all": 100
-    },
-    "dt": 1739199548,
-    "sys": {
-        "country": "GH",
-        "sunrise": 1739168240,
-        "sunset": 1739211171
-    },
-    "timezone": 0,
-    "id": 2306104,
-    "name": "Accra",
-    "cod": 200
+  "coord": {
+    "lon": -0.1969,
+    "lat": 5.556
+  },
+  "weather": [
+    {
+      "id": 804,
+      "main": "Clouds",
+      "description": "overcast clouds",
+      "icon": "04d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 302.88,
+    "feels_like": 307.77,
+    "temp_min": 302.88,
+    "temp_max": 302.88,
+    "pressure": 1006,
+    "humidity": 71,
+    "sea_level": 1006,
+    "grnd_level": 1002
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 6.11,
+    "deg": 197,
+    "gust": 6.11
+  },
+  "clouds": {
+    "all": 100
+  },
+  "dt": 1739199548,
+  "sys": {
+    "country": "GH",
+    "sunrise": 1739168240,
+    "sunset": 1739211171
+  },
+  "timezone": 0,
+  "id": 2306104,
+  "name": "Accra",
+  "cod": 200
 }
