@@ -13,18 +13,31 @@ interface CurrentWeatherProps {
 export const CurrentWeather = ({ weatherData }: CurrentWeatherProps) => {
   return (
     <Card
-      sx={{ mb: 4, border: 2, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+      sx={{
+        mb: 4,
+        border: 2,
+        borderRadius: 4,
+        backgroundColor: "rgba(24, 7, 7, 0.12)",
+      }}
     >
       <CardContent>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" gutterBottom>
+            <Typography
+              variant="h4"
+              data-testid={`current_weather-details-${weatherData.name} - ${weatherData.sys.country}`}
+              gutterBottom
+            >
               {weatherData.name}, {weatherData.sys.country}
             </Typography>
-            <Typography variant="h2" gutterBottom>
+            <Typography
+              data-testid="current_weather-temperature"
+              variant="h2"
+              gutterBottom
+            >
               {Math.round(weatherData.main.temp)}°C
             </Typography>
-            <Typography variant="h6">
+            <Typography data-testid="current_weather-description" variant="h6">
               {weatherData.weather[0].description}
             </Typography>
           </Grid>
@@ -32,17 +45,19 @@ export const CurrentWeather = ({ weatherData }: CurrentWeatherProps) => {
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                 <ThermostatAuto />
-                <Typography>
+                <Typography data-testid="current_weather-temperature">
                   Feels like: {Math.round(weatherData.main.feels_like)}°C
                 </Typography>
               </Box>
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                 <WaterDrop />
-                <Typography>Humidity: {weatherData.main.humidity}%</Typography>
+                <Typography data-testid="current_weather-humidity">
+                  Humidity: {weatherData.main.humidity}%
+                </Typography>
               </Box>
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                 <Air />
-                <Typography>
+                <Typography data-testid="current_weather-wind">
                   Wind: {weatherData.wind.speed} km/h, {weatherData.wind.deg}°
                 </Typography>
               </Box>
