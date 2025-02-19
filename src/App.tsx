@@ -1,15 +1,9 @@
 import { useState } from "react";
-import {
-  Container,
-  Box,
-  Typography,
-  CssBaseline,
-} from "@mui/material";
+import { Container, Box, Typography, CssBaseline } from "@mui/material";
 import { CurrentWeather } from "./components/CurrentWeather";
 import { Forecast } from "./components/ForeastWeather";
 import { LocationSearch } from "./components/Autocompletes";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
 
 const App = () => {
   const [location, setLocation] = useState<string | null>(null);
@@ -32,11 +26,13 @@ const App = () => {
           >
             Weather App
           </Typography>
-          <LocationSearch onLocationSelect={(location) => setLocation(location)} />
+          <LocationSearch
+            onLocationSelect={(location) => setLocation(location)}
+          />
           {location && (
             <>
-            <CurrentWeather location={location} />
-            <Forecast location={location} />
+              <CurrentWeather location={location} />
+              <Forecast location={location} />
             </>
           )}
         </Box>

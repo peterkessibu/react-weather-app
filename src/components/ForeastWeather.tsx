@@ -17,7 +17,7 @@ export const Forecast = ({ location }: ForecastProps) => {
     const fetchForecastData = async () => {
       try {
         const response = await axios.get<ForecastData>(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=ab38d7731466c31227cd4701f7d9aa27`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=ab38d7731466c31227cd4701f7d9aa27`,
         );
         setForecastData(response.data);
       } catch (error) {
