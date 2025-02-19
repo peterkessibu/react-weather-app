@@ -19,7 +19,7 @@ export const CurrentWeather = ({ location }: CurrentWeatherProps) => {
     const fetchWeatherData = async () => {
       try {
         const response = await axios.get<WeatherData>(
-          `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=ab38d7731466c31227cd4701f7d9aa27`
+          `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=ab38d7731466c31227cd4701f7d9aa27`,
         );
         setWeatherData(response.data);
       } catch (error) {
@@ -32,7 +32,11 @@ export const CurrentWeather = ({ location }: CurrentWeatherProps) => {
 
   // If weather data is not loaded yet, display a loading message
   if (!weatherData) {
-    return <Typography variant="body1">Current Weather data is loading...</Typography>;
+    return (
+      <Typography data-testid="current-weather-loading-test" variant="body1">
+        Current Weather data is loading...
+      </Typography>
+    );
   }
 
   return (
@@ -65,28 +69,35 @@ export const CurrentWeather = ({ location }: CurrentWeatherProps) => {
               {weatherData.weather[0].description}
             </Typography>
           </Grid>
-            <Grid item xs={12} md={6} container justifyContent="center" alignItems="center">
+          <Grid
+            item
+            xs={12}
+            md={6}
+            container
+            justifyContent="center"
+            alignItems="center"
+          >
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <ThermostatAuto />
-              <Typography data-testid="current_weather-temperature">
-                Feels like: {Math.round(weatherData.main.feels_like)}°C
-              </Typography>
+                <ThermostatAuto />
+                <Typography data-testid="current_weather-temperature">
+                  Feels like: {Math.round(weatherData.main.feels_like)}°C
+                </Typography>
               </Box>
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <WaterDrop />
-              <Typography data-testid="current_weather-humidity">
-                Humidity: {weatherData.main.humidity}%
-              </Typography>
+                <WaterDrop />
+                <Typography data-testid="current_weather-humidity">
+                  Humidity: {weatherData.main.humidity}%
+                </Typography>
               </Box>
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <Air />
-              <Typography data-testid="current_weather-wind">
-                Wind: {weatherData.wind.speed} km/h, {weatherData.wind.deg}°
-              </Typography>
+                <Air />
+                <Typography data-testid="current_weather-wind">
+                  Wind: {weatherData.wind.speed} km/h, {weatherData.wind.deg}°
+                </Typography>
               </Box>
             </Box>
-            </Grid>
+          </Grid>
         </Grid>
       </CardContent>
     </Card>

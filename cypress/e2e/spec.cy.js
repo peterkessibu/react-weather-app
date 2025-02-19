@@ -64,4 +64,17 @@ describe("template spec", () => {
 
     cy.get('[data-testid="forecast-description"]').should("exist");
   });
+
+  it("Testing loading states", () => {
+    cy.visit("http://localhost:5173");
+
+    cy.intercept("GET", "**/data/2.5/forecast*");
+
+    cy.get('[data-testid="TextField"] input')
+      .type("London, GB{enter}")
+      .should("have.value", "London, GB");
+
+    cy.get('[data-testid="current-weather-loading-test"]').should("exist");
+    cy.get('[data-testid="forecast-weather-loading-test"]').should("exist");
+  });
 });

@@ -17,7 +17,7 @@ export const Forecast = ({ location }: ForecastProps) => {
     const fetchForecastData = async () => {
       try {
         const response = await axios.get<ForecastData>(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=ab38d7731466c31227cd4701f7d9aa27`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=ab38d7731466c31227cd4701f7d9aa27`,
         );
         setForecastData(response.data);
       } catch (error) {
@@ -30,7 +30,11 @@ export const Forecast = ({ location }: ForecastProps) => {
 
   // If forecast data is not loaded yet, display a loading message
   if (!forecastData) {
-    return <Typography variant="body1">Forecast data is loading...</Typography>;
+    return (
+      <Typography data-testid="forecast-weather-loading-test" variant="body1">
+        Forecast data is loading...
+      </Typography>
+    );
   }
 
   const getDailyForecasts = (): DailyForecast[] => {
