@@ -30,7 +30,11 @@ export const Forecast = ({ location }: ForecastProps) => {
 
   // If forecast data is not loaded yet, display a loading message
   if (!forecastData) {
-    return <Typography variant="body1">Forecast data is loading...</Typography>;
+    return (
+      <Typography data-testid="forecast-weather-loading-test" variant="body1">
+        Forecast data is loading...
+      </Typography>
+    );
   }
 
   const getDailyForecasts = (): DailyForecast[] => {
