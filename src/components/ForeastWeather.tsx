@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
@@ -5,10 +7,32 @@ import Typography from "@mui/material/Typography";
 import { ForecastData, DailyForecast } from "../types";
 
 interface ForecastProps {
-  forecastData: ForecastData;
+  location: string;
 }
 
-export const Forecast = ({ forecastData }: ForecastProps) => {
+export const Forecast = ({ location }: ForecastProps) => {
+  const [forecastData, setForecastData] = useState<ForecastData | null>(null);
+
+  useEffect(() => {
+    const fetchForecastData = async () => {
+      try {
+        const response = await axios.get<ForecastData>(
+          `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=ab38d7731466c31227cd4701f7d9aa27`
+        );
+        setForecastData(response.data);
+      } catch (error) {
+        console.error("Error fetching forecast data:", error);
+      }
+    };
+
+    fetchForecastData();
+  }, [location]);
+
+  // If forecast data is not loaded yet, display a loading message
+  if (!forecastData) {
+    return <Typography variant="body1">Forecast data is loading...</Typography>;
+  }
+
   const getDailyForecasts = (): DailyForecast[] => {
     const dailyForecasts: { [date: string]: DailyForecast } = {};
 
@@ -36,7 +60,7 @@ export const Forecast = ({ forecastData }: ForecastProps) => {
         <Typography data-testid="Forecast" variant="h5" gutterBottom>
           5-Day Forecast
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{ mt: 2 }}>
           {dailyForecasts.map((day) => (
             <Grid
               item
@@ -46,7 +70,7 @@ export const Forecast = ({ forecastData }: ForecastProps) => {
               key={day.date}
               data-testid="forecast-card"
             >
-              <Card variant="outlined">
+              <Card variant="outlined" sx={{ border: 1, borderRadius: 4 }}>
                 <CardContent>
                   <Typography variant="h6" data-testid="forecast-day">
                     {new Date(day.date).toLocaleDateString("en-US", {
@@ -72,6 +96,7 @@ export const Forecast = ({ forecastData }: ForecastProps) => {
                     variant="body2"
                     color="text.secondary"
                     data-testid="forecast-description"
+                    sx={{ mt: 2, fontStyle: "italic" }}
                   >
                     {day.descriptions[0]}
                   </Typography>
