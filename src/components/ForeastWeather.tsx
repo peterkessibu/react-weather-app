@@ -36,17 +36,16 @@ export const Forecast = ({ forecastData }: ForecastProps) => {
         <Typography data-testid="Forecast" variant="h5" gutterBottom>
           5-Day Forecast
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{ mt: 2}}>
           {dailyForecasts.map((day) => (
             <Grid
               item
-              xs={12}
-              sm={6}
+              sm={2}
               md={2.4}
               key={day.date}
               data-testid="forecast-card"
             >
-              <Card variant="outlined">
+              <Card variant="outlined" sx={{ border: 1, borderRadius: 4 }}>
                 <CardContent>
                   <Typography variant="h6" data-testid="forecast-day">
                     {new Date(day.date).toLocaleDateString("en-US", {
@@ -72,6 +71,7 @@ export const Forecast = ({ forecastData }: ForecastProps) => {
                     variant="body2"
                     color="text.secondary"
                     data-testid="forecast-description"
+                    sx={{ mt: 2, fontStyle: "italic" }}
                   >
                     {day.descriptions[0]}
                   </Typography>
