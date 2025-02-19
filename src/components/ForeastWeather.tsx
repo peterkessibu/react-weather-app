@@ -70,7 +70,14 @@ export const Forecast = ({ location }: ForecastProps) => {
               key={day.date}
               data-testid="forecast-card"
             >
-              <Card variant="outlined" sx={{ border: 1, borderRadius: 4 }}>
+              <Card
+                variant="outlined"
+                sx={{
+                  border: 1,
+                  borderRadius: 4,
+                  backgroundColor: "rgba(24, 7, 7, 0.12)",
+                }}
+              >
                 <CardContent>
                   <Typography variant="h6" data-testid="forecast-day">
                     {new Date(day.date).toLocaleDateString("en-US", {
