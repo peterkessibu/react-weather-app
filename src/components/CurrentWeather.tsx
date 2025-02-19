@@ -33,11 +33,7 @@ export const CurrentWeather = ({ location }: CurrentWeatherProps) => {
   // If weather data is not loaded yet, display a loading message
   if (!weatherData) {
     return (
-<<<<<<< HEAD
-      <Typography data-testid="current-weather-loading-test" variant="body1">
-=======
       <Typography variant="body1">
->>>>>>> refactoring-features
         Current Weather data is loading...
       </Typography>
     );
