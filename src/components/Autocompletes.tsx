@@ -19,12 +19,12 @@ export const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
       if (inputValue.length < 2) return;
       try {
         const response = await axios.get(
-          `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=ab38d7731466c31227cd4701f7d9aa27`
+          `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=ab38d7731466c31227cd4701f7d9aa27`,
         );
         const suggestions = response.data.map(
           (city: { name: string; country: string }) => ({
             label: `${city.name}, ${city.country}`,
-          })
+          }),
         );
         setOptions(suggestions);
       } catch (error) {
@@ -44,7 +44,7 @@ export const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
       onChange={(_, newValue) => {
         if (newValue) {
           onLocationSelect(
-            typeof newValue === "string" ? newValue : newValue.label
+            typeof newValue === "string" ? newValue : newValue.label,
           );
         }
       }}
