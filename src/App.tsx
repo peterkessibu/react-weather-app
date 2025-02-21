@@ -10,7 +10,7 @@ const App = () => {
 
   const darkTheme = createTheme({
     palette: {
-      mode: "light",
+      mode: "dark",
     },
   });
   return (
@@ -26,6 +26,7 @@ const App = () => {
           >
             Weather App
           </Typography>
+          
           <LocationSearch
             onLocationSelect={(location) => setLocation(location)}
           />
