@@ -32,7 +32,12 @@ const App = () => {
           <LocationSearch
             onLocationSelect={(location) => setLocation(location)}
           />
-
+          <Button
+            onClick={() => setMode(mode === "light" ? "dark" : "light")}
+            startIcon={mode === "light" ? <Brightness4 /> : <Brightness7 />}
+          >
+            {mode === "light" ? "Dark Mode" : "Light Mode"}
+          </Button>
           {location && (
             <>
               <CurrentWeather location={location} />
