@@ -12,7 +12,7 @@ const App = () => {
 
   const theme = createTheme({
     palette: {
-      mode,
+      mode: "light",
     },
   });
 
@@ -21,25 +21,14 @@ const App = () => {
       <CssBaseline />
       <Container maxWidth="lg">
         <Box sx={{ my: 4, textAlign: "center" }}>
-          <Container>
-            <Typography
-              data-testid="Weather-app"
-              variant="h3"
-              component="h1"
-              gutterBottom
-            >
-              Weather App
-            </Typography>
-            <Button
-              variant="contained"
-              startIcon={mode === "light" ? <Brightness4 /> : <Brightness7 />}
-              onClick={() => setMode(mode === "light" ? "dark" : "light")}
-              sx={{mb: 3 }}
-            >
-              {mode === "light" ? "Dark Mode" : "Light Mode"}
-            </Button>
-          </Container>
-
+          <Typography
+            data-testid="Weather-app"
+            variant="h3"
+            component="h1"
+            gutterBottom
+          >
+            Weather App
+          </Typography>
           <LocationSearch
             onLocationSelect={(location) => setLocation(location)}
           />
