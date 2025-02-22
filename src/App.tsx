@@ -1,20 +1,23 @@
 import { useState } from "react";
-import { Container, Box, Typography, CssBaseline } from "@mui/material";
+import { Container, Box, Typography, CssBaseline, Button } from "@mui/material";
 import { CurrentWeather } from "./components/CurrentWeather";
 import { Forecast } from "./components/ForeastWeather";
 import { LocationSearch } from "./components/Autocompletes";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Brightness4, Brightness7 } from "@mui/icons-material";
 
 const App = () => {
   const [location, setLocation] = useState<string | null>(null);
+  const [mode, setMode] = useState<"light" | "dark">("light");
 
-  const darkTheme = createTheme({
+  const theme = createTheme({
     palette: {
-      mode: "dark",
+      mode: "light",
     },
   });
+
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
         <Box sx={{ my: 4, textAlign: "center" }}>
@@ -26,10 +29,10 @@ const App = () => {
           >
             Weather App
           </Typography>
-          
           <LocationSearch
             onLocationSelect={(location) => setLocation(location)}
           />
+
           {location && (
             <>
               <CurrentWeather location={location} />
